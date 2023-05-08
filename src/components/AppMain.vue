@@ -15,9 +15,16 @@ export default{
 </script>
 
 <template>
-    <div class="container row">
-        <SingleCard v-for="( elem,index ) in store.arrayCard" :key="index" :infoCarta="elem"/>
-    </div>
+            <select name="" v-model="store.selectType" @click="$emit('pippo')">
+                <option value="" disabled>--Cerca per Archetipo--</option>
+                <option :value="elem.archetype_name" v-for="(elem, index) in store.arrayArchetype" :key="index">{{ elem.archetype_name }}</option>
+            </select>
+            <div class="container text-center " v-if="store.soldatino">
+                <h1>LOADING...</h1>
+            </div>
+            <div class="container row" v-else>
+                <SingleCard v-for="( elem,index ) in store.arrayCard" :key="index" :infoCarta="elem"/>
+            </div>
 </template>
 
 <style lang="scss" scoped>
